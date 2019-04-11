@@ -1,8 +1,8 @@
-# MIS 497 Assignment {{.ID}}: {{.Title}}
+# MIS 497 Assignment {{.Title}}
 This assignment must be submitted through **GitHub**. The template should be cloned onto your local machine using Git. 90% of the grade will come from the code itself, the last 10% from properly naming and submitting.
 
 {{ range $key, $r := .Requirements }}
-  * {{$r}}
+  * {{$r.Prompt}}
 {{end}}
 
 

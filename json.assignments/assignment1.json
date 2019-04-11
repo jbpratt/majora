@@ -1,0 +1,16 @@
+{
+  "title": "Assignment 1: HTML",
+  "due_date": "01-01-2001",
+  "gen-description": "This assignment must be submitted through GitHub. The template should be cloned onto your local machine using Git. 90% of the grade will come from the code itself, the last 10% from properly naming and submitting.",
+  "proj-description": "Create a new folder named 'FirstnameLastnamePA1', inside of that folder make a single HTML file named 'index.html'. Find a movie or TV series that you are a fan of and employ the following HTML features:",
+  "requirements": [
+    {"element": "h1", "id": "title", "type": "select", "points": 10, "prompt": "H1 Element with an ID of 'Title'. This should be the title of the media you chose."},
+    {"element": "img", "id": "coverart", "type": "select", "points": 10, "prompt": "Image element related to the media with and ID of 'CoverArt' (Cover art is good here)"},
+    {"element": "h5", "id": "rating", "type": "select", "points": 10, "prompt": "Heading 5 element with an ID of 'Rating'. This should be the rating from IMDB out of 10"},
+    {"element": "iframe", "id": "trailer", "type": "select", "points": 10, "prompt": "Iframe embeding a youtube video of a trailer of the media with an ID of 'Trailer'. This can be acquired by right clicking on the video, and copying the embed."},
+    {"element": "a", "id": "imdb", "type": "select", "points": 10, "prompt": "Attribute linking to the IMDB page"},
+    {"element": "p", "id": "summary", "type": "select", "points": 10, "prompt": "Copy and paste the summary text from IMDB into a Paragraph element with an ID of 'Summary'"},
+    {"element": "ul", "id": "actors", "type": "select", "points": 10, "prompt": "Unorded list of three to five actors. This unorder list element should have an ID of 'Actors'"}
+  ],
+  "resources": "It is best to take this little pieces at a time, step by step, as not to get confused by too many things at once. W3 Schools is an amazing resource, and has examples on everything above if you get stuck."
+}
