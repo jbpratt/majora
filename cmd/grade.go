@@ -18,6 +18,7 @@ var gradeCmd = &cobra.Command{
 	Short: "Grade an assignment",
 	Run: func(cmd *cobra.Command, args []string) {
 		// read in json config
+		p, _ := cmd.Flags().GetInt("port")
 		f, _ := cmd.Flags().GetString("file")
 		data, err := ioutil.ReadFile(f)
 		if err != nil {
@@ -30,7 +31,7 @@ var gradeCmd = &cobra.Command{
 		}
 
 		// start server
-		server(f)
+		server(f, p)
 
 		// start chromedp
 
@@ -39,7 +40,7 @@ var gradeCmd = &cobra.Command{
 		defer cancel()
 
 		// run task list
-		err = chromedp.Run(ctx, grade("http://localhost:3000", &config))
+		err = chromedp.Run(ctx, grade(fmt.Sprintf("http://localhost:%d", p), &config))
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -49,16 +50,23 @@ var gradeCmd = &cobra.Command{
 }
 
 func grade(host string, config *models.Config) chromedp.Tasks {
-	return chromedp.Tasks{}
+	actions := make([]chromedp.Action, len(config.Requirements))
+	for r, i := range config.Requirments {
+
+	}
+	return chromedp.Tasks{
+		chromedp.Navigate(host),
+	}
 }
 
-func server(file string) {
+func server(file string, port int) {
 	http.Handle("/", http.FileServer(http.Dir(file)))
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 }
 
 func init() {
 	RootCmd.AddCommand(gradeCmd)
+	gradeCmd.Flags().IntP("port", "p", 8000, "Port to run web server used for grading")
 	gradeCmd.Flags().StringP("file", "f", "", "JSON file assignment")
 	gradeCmd.Flags().StringP("assignment", "a", "", "Assignment to grade")
 }
