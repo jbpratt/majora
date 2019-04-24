@@ -29,14 +29,15 @@ var gradeCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
+		fmt.Println(config)
 
 		// start server
-		server(f, p)
+		go server(f, p)
 
 		// start chromedp
 
 		// create context
-		ctx, cancel := chromedp.NewContext(context.Background())
+		ctx, cancel := chromedp.NewContext(context.Background(), chromedp.WithDebugf(log.Printf))
 		defer cancel()
 
 		// run task list
@@ -46,17 +47,18 @@ var gradeCmd = &cobra.Command{
 		}
 		// loop through config.Requirments and select
 		fmt.Println(args)
+		fmt.Println(config)
 	},
 }
 
 func grade(host string, config *models.Config) chromedp.Tasks {
 	actions := make([]chromedp.Action, len(config.Requirements))
-	for r, i := range config.Requirments {
+	actions = append(actions, chromedp.Navigate(host))
 
-	}
-	return chromedp.Tasks{
-		chromedp.Navigate(host),
-	}
+	//for r, i := range config.Requirements {
+
+	//}
+	return actions
 }
 
 func server(file string, port int) {
