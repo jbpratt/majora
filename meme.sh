@@ -1,0 +1,1 @@
+ln -s $(which chromium) /usr/local/bin/google-chrome 
